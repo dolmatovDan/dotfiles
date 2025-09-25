@@ -25,9 +25,21 @@ vim.api.nvim_set_keymap("s", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>
 
 local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimports()
-  end,
-  group = format_sync_grp,
+    pattern = "*.go",
+    callback = function()
+        require('go.format').goimports()
+    end,
+    group = format_sync_grp,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*.cpp",
+    callback = function()
+        vim.lsp.buf.format()
+    end,
+})
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = "tex",
+    command = "TSBufDisable highlight",
 })

@@ -20,6 +20,7 @@ return {
             })
 
             vim.keymap.set("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>", opts)
+            vim.keymap.set("n", "<leader>gf", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
             vim.keymap.set("n", "<leader>tr", "<CMD>Telescope lsp_references<CR>", opts)
 
             local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -42,6 +43,14 @@ return {
             })
 
             lspconfig.clangd.setup({
+                capabilities = capabilities,
+            })
+
+            lspconfig.pyright.setup({
+                capabilities = capabilities,
+            })
+
+            lspconfig.hls.setup({
                 capabilities = capabilities,
             })
         end,

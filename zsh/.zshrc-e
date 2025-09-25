@@ -128,5 +128,3 @@ if [ -f '/Users/dandolmatov/yandex-cloud/path.bash.inc' ]; then source '/Users/d
 if [ -f '/Users/dandolmatov/yandex-cloud/completion.zsh.inc' ]; then source '/Users/dandolmatov/yandex-cloud/completion.zsh.inc'; fi
 
 export PATH="$HOME/.local/bin:$PATH"
-
-[ -f "/Users/dandolmatov/.ghcup/env" ] && . "/Users/dandolmatov/.ghcup/env" # ghcup-env
