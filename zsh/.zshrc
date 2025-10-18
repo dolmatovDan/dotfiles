@@ -130,3 +130,4 @@ if [ -f '/Users/dandolmatov/yandex-cloud/completion.zsh.inc' ]; then source '/Us
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -f "/Users/dandolmatov/.ghcup/env" ] && . "/Users/dandolmatov/.ghcup/env" # ghcup-env
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

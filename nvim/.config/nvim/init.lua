@@ -43,3 +43,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "tex",
     command = "TSBufDisable highlight",
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    callback = function()
+        local ft = vim.bo.filetype
+        if ft == "sql" or ft == "psql" then
+            local view = vim.fn.winsaveview()
+            vim.lsp.buf.format({ async = false })
+            vim.fn.winrestview(view)
+        end
+    end
+})
+

@@ -14,7 +14,7 @@ return {
             version = "1.*",
         },
         config = function()
-            require("blink.cmp").setup()
+            require("blink.cmp").setup({})
             vim.diagnostic.config({
                 float = { border = "rounded" },
             })
@@ -53,6 +53,25 @@ return {
             lspconfig.hls.setup({
                 capabilities = capabilities,
             })
+
+            lspconfig.sqlls.setup({
+                capabilities = capabilities,
+            })
         end,
+    },
+    {
+        "saghen/blink.cmp",
+        optional = true,
+        opts = {
+            sources = {
+                default = { "dadbod" },
+                providers = {
+                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+                },
+            },
+        },
+        dependencies = {
+            "kristijanhusak/vim-dadbod-completion",
+        },
     },
 }
