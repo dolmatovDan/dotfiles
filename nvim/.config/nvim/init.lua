@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.cpp",
+    pattern = { "*.cpp", "*.hs", "*.lua" },
     callback = function()
         vim.lsp.buf.format()
     end,
@@ -56,3 +56,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end
 })
 
+
+vim.keymap.set('n', '<F7>', function()
+    vim.cmd('!g++ -std=c++17 -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -DLOCAL -Wall -O2 % -o %:r')
+end, {})
+
+vim.keymap.set('n', '<F8>', function()
+    vim.cmd('!g++ -std=c++17 -Wextra -DLOCAL -Wall -O2 % -o %:r')
+end, {})

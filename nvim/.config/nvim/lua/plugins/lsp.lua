@@ -50,28 +50,24 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.hls.setup({
-                capabilities = capabilities,
-            })
-
             lspconfig.sqlls.setup({
                 capabilities = capabilities,
             })
         end,
     },
-    {
-        "saghen/blink.cmp",
-        optional = true,
-        opts = {
-            sources = {
-                default = { "dadbod" },
-                providers = {
-                    dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-                },
-            },
-        },
-        dependencies = {
-            "kristijanhusak/vim-dadbod-completion",
-        },
-    },
+    -- {
+    --     "saghen/blink.cmp",
+    --     optional = true,
+    --     opts = {
+    --         sources = {
+    --             default = { "dadbod" },
+    --             providers = {
+    --                 dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+    --             },
+    --         },
+    --     },
+    --     dependencies = {
+    --         "kristijanhusak/vim-dadbod-completion",
+    --     },
+    -- },
 }
