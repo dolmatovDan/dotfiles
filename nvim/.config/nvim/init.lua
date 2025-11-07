@@ -22,6 +22,8 @@ require("opts")
 vim.keymap.set('i', "jk", '<Esc>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("s", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "S", [[:s/\V]], { noremap = true, silent = true })
+
 
 local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
