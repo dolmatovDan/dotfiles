@@ -23,6 +23,7 @@ return {
             vim.keymap.set("n", "<leader>ts", builtin.live_grep, {})
             vim.keymap.set("n", "<leader>tb", builtin.oldfiles, {})
             vim.keymap.set("n", "<leader>vh", ":Telescope help_tags<CR>")
+            vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>", { desc = "find todos in project" })
             vim.keymap.set(
                 "n",
                 "<leader>tw",

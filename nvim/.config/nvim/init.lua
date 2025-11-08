@@ -19,12 +19,6 @@ require("lazy").setup({
 require("keys")
 require("opts")
 
-vim.keymap.set('i', "jk", '<Esc>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("s", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "S", [[:s/\V]], { noremap = true, silent = true })
-
-
 local format_sync_grp = vim.api.nvim_create_augroup("goimports", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
@@ -45,24 +39,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = "tex",
     command = "TSBufDisable highlight",
 })
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*",
-    callback = function()
-        local ft = vim.bo.filetype
-        if ft == "sql" or ft == "psql" then
-            local view = vim.fn.winsaveview()
-            vim.lsp.buf.format({ async = false })
-            vim.fn.winrestview(view)
-        end
-    end
-})
-
-
-vim.keymap.set('n', '<F7>', function()
-    vim.cmd('!g++ -std=c++17 -Wextra -g -fsanitize=address,undefined -fno-omit-frame-pointer -DLOCAL -Wall -O2 % -o %:r')
-end, {})
-
-vim.keymap.set('n', '<F8>', function()
-    vim.cmd('!g++ -std=c++17 -Wextra -DLOCAL -Wall -O2 % -o %:r')
-end, {})

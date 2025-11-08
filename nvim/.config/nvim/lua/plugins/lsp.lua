@@ -23,6 +23,12 @@ return {
             vim.keymap.set("n", "<leader>gf", "<CMD>lua vim.lsp.buf.format()<CR>", opts)
             vim.keymap.set("n", "<leader>tr", "<CMD>Telescope lsp_references<CR>", opts)
 
+            vim.api.nvim_set_keymap("i", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+                { noremap = true, silent = true })
+            vim.api.nvim_set_keymap("s", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>",
+                { noremap = true, silent = true })
+
+
             local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
             function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
                 opts = opts or {}

@@ -48,13 +48,13 @@ vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("n", "G", "Gzz")
 
 function VSetSearch()
- local temp = vim.fn.getreg("s") -- Get the contents of register 's'
- vim.cmd('normal! gv"sy') -- Select the visually highlighted text and copy it to register 's'
- -- Set the search register '/' with the escaped content of register 's'
- local search_pattern = "\\V" .. vim.fn.substitute(vim.fn.escape(vim.fn.getreg("s"), "/\\"), "\n", "\\n", "g")
- vim.fn.setreg("/", search_pattern)
- -- Restore the original content of register 's'
- vim.fn.setreg("s", temp)
+    local temp = vim.fn.getreg("s") -- Get the contents of register 's'
+    vim.cmd('normal! gv"sy')        -- Select the visually highlighted text and copy it to register 's'
+    -- Set the search register '/' with the escaped content of register 's'
+    local search_pattern = "\\V" .. vim.fn.substitute(vim.fn.escape(vim.fn.getreg("s"), "/\\"), "\n", "\\n", "g")
+    vim.fn.setreg("/", search_pattern)
+    -- Restore the original content of register 's'
+    vim.fn.setreg("s", temp)
 end
 
 -- Create mappings for visual mode
@@ -62,3 +62,24 @@ vim.api.nvim_set_keymap("x", "*", ":<C-u>lua VSetSearch()<CR>/<C-R>=@/<CR><CR>",
 vim.api.nvim_set_keymap("x", "#", ":<C-u>lua VSetSearch()<CR>?<C-R>=@/<CR><CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>h", ":nohl<CR>")
+
+vim.keymap.set("v", "<leader>c", function()
+    local file = vim.fn.expand("%:p")
+    local home = vim.fn.expand("~")
+    file = file:gsub("^" .. vim.pesc(home) .. "/", "~/")
+
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+
+    local text = string.format("%s#L%d-L%d", file, start_line, end_line)
+
+    vim.fn.setreg("+", text)
+
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+end, { desc = "Copy ~/ path and selected line range", silent = true })
+
+
+vim.api.nvim_set_keymap("v", "S", [[:s/\V]], { noremap = true, silent = true })
