@@ -29,7 +29,7 @@
   "vague.nvim": { "branch": "main", "commit": "f3620ef32fe8b756398d8dbed60166b2af6ea796" },
   "vim-dadbod": { "branch": "master", "commit": "e95afed23712f969f83b4857a24cf9d59114c2e6" },
   "vim-dadbod-completion": { "branch": "master", "commit": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6" },
-  "vim-dadbod-ui": { "branch": "master", "commit": "e8b53c0f3aa6e6127ac2a2d2071d9aade6c6e373" },
+  "vim-dadbod-ui": { "branch": "master", "commit": "5a83ee1fdafcdedb03222bb46f7cfd70646025ee" },
   "vim-illuminate": { "branch": "master", "commit": "0d1e93684da00ab7c057410fecfc24f434698898" },
   "vimtex": { "branch": "master", "commit": "dc90feacb86f7b85b0b791d8073eefc769a23725" }
 }
