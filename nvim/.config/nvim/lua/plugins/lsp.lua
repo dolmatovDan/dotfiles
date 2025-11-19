@@ -50,7 +50,19 @@ return {
 
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-            vim.lsp.config('gopls', { capabilities = capabilities })
+            vim.lsp.config('gopls', {
+                capabilities = capabilities,
+                cmd = { "ya", "tool", "gopls", "serve" },
+                settings = {
+                    gopls = {
+                        arcadiaIndexDirs = {
+                            '~/arcadia/neuro/go',
+                            '~/arcadia/neuroexpert/backend/',
+                        },
+                        expandWorkspaceToModule = false,
+                    }
+                }
+            })
             vim.lsp.enable('gopls')
 
             vim.lsp.config('lua_ls', { capabilities = capabilities })
