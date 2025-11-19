@@ -42,6 +42,16 @@ return {
 
             lspconfig.gopls.setup({
                 capabilities = capabilities,
+                cmd = { "ya", "tool", "gopls", "serve" },
+                settings = {
+                    gopls = {
+                        arcadiaIndexDirs = {
+                            '~/arcadia/neuro/go',
+                            '~/arcadia/neuroexpert/backend/',
+                        },
+                        expandWorkspaceToModule = false,
+                    }
+                }
             })
 
             lspconfig.lua_ls.setup({

@@ -14,6 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     { import = "plugins" },
+    {
+        "arc blamer", 
+        dir = "~/arcadia/junk/magnickolas/arcblamer.nvim",
+    },
 })
 
 require("keys")
