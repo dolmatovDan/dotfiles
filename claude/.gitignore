@@ -1,0 +1,9 @@
+.claude/debug/
+.claude/projects/
+.claude/file-history/
+.claude/todos/
+.claude/history.jsonl
+.claude/shell-snapshots/
+.claude/plans/
+.claude/session-env/
+.claude/statsig/
