@@ -7,3 +7,10 @@
 .claude/plans/
 .claude/session-env/
 .claude/statsig/
+.claude/cache/
+.claude/image-cache/
+.claude/paste-cache/
+.claude/plugins/
+.claude/stats-cache.json
+.claude/tasks/
+.claude/telemetry/
