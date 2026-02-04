@@ -83,3 +83,7 @@ end, { desc = "Copy ~/ path and selected line range", silent = true })
 
 
 vim.api.nvim_set_keymap("v", "S", [[:s/\V]], { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>w", "<Cmd>update<CR>")
+vim.keymap.set("n", "<leader>q", "<Cmd>quit<CR>")
+vim.keymap.set("n", "<leader>Q", "<Cmd>wqa<CR>")

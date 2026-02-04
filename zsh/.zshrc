@@ -133,3 +133,5 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 PATH="$HOME/.ghcup/bin:$PATH"
 alias k="kubectl"
+
+alias v="nvim"

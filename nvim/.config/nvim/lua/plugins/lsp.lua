@@ -17,6 +17,18 @@ return {
             require("blink.cmp").setup({})
             vim.diagnostic.config({
                 float = { border = "rounded" },
+                virtual_text = true,
+                signs = true,
+                underline = true,
+                update_in_insert = false,
+            })
+            vim.api.nvim_create_autocmd('LspAttach', {
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if client and client.supports_method('textDocument/inlayHint') then
+                        vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+                    end
+                end,
             })
 
             vim.keymap.set("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>", opts)
@@ -38,27 +50,23 @@ return {
 
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-            local lspconfig = require("lspconfig")
+            vim.lsp.config('gopls', { capabilities = capabilities })
+            vim.lsp.enable('gopls')
 
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-            })
+            vim.lsp.config('lua_ls', { capabilities = capabilities })
+            vim.lsp.enable('lua_ls')
 
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-            })
+            vim.lsp.config('clangd', { capabilities = capabilities })
+            vim.lsp.enable('clangd')
 
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-            })
+            vim.lsp.config('pyright', { capabilities = capabilities })
+            vim.lsp.enable('pyright')
 
-            lspconfig.pyright.setup({
-                capabilities = capabilities,
-            })
+            vim.lsp.config('sqlls', { capabilities = capabilities })
+            vim.lsp.enable('sqlls')
 
-            lspconfig.sqlls.setup({
-                capabilities = capabilities,
-            })
+            vim.lsp.config('rust_analyzer', { capabilities = capabilities })
+            vim.lsp.enable('rust_analyzer')
         end,
     },
     -- {
