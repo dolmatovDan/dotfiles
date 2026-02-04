@@ -87,3 +87,27 @@ vim.api.nvim_set_keymap("v", "S", [[:s/\V]], { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>w", "<Cmd>update<CR>")
 vim.keymap.set("n", "<leader>q", "<Cmd>quit<CR>")
 vim.keymap.set("n", "<leader>Q", "<Cmd>wqa<CR>")
+
+vim.keymap.set("v", "<leader>ac", function()
+    local file = vim.fn.expand("%:p")
+    local home = vim.fn.expand("~")
+    file = file:gsub("^" .. vim.pesc(home) .. "/", "~/")
+    file = string.sub(file, 2)
+
+    local start_line = vim.fn.line("v")
+    local end_line = vim.fn.line(".")
+    if start_line > end_line then
+        start_line, end_line = end_line, start_line
+    end
+
+    local text = ""
+    if start_line < end_line then
+        text = string.format("https://arcanum.yandex-team.ru%s#L%d-%d", file, start_line, end_line)
+    else
+        text = string.format("https://arcanum.yandex-team.ru%s#L%d", file, start_line)
+    end
+
+    vim.fn.setreg("+", text)
+
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+end, { desc = "Copy ~/ path and selected line range", silent = true })

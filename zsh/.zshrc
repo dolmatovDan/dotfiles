@@ -134,4 +134,8 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 PATH="$HOME/.ghcup/bin:$PATH"
 alias k="kubectl"
 
+function apush() {
+    arc commit -am "$*" && arc push
+}
+
 alias v="nvim"
